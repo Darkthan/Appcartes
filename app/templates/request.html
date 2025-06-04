@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Nouvelle carte</h2>
+<form method="post">
+  <div class="mb-3">
+    <input name="student_name" id="student_name" class="form-control" placeholder="Nom Prenom">
+  </div>
+  <div class="mb-3">
+    <input name="classe" class="form-control" placeholder="Classe">
+  </div>
+  <button class="btn btn-primary" type="submit">Envoyer</button>
+</form>
+<script>
+$('#student_name').on('input', function() {
+  $.get('/students', {q: $(this).val()}, function(data) {
+    $('#suggestions').remove();
+    var list = $('<datalist id="suggestions"></datalist>');
+    data.forEach(function(item){ list.append('<option value="'+item+'">'); });
+    $('#student_name').attr('list','suggestions').after(list);
+  });
+});
+</script>
+{% endblock %}
