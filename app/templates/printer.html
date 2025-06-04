@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Imprimeur</h2>
+<table class="table">
+  <tr><th>Nom</th><th>Classe</th><th>Status</th><th>Action</th></tr>
+  {% for c in cards %}
+  <tr>
+    <td>{{ c.student_name }}</td>
+    <td>{{ c.classe }}</td>
+    <td>{{ c.status }}</td>
+    <td>
+      <form method="post" class="d-inline">
+        <input type="hidden" name="id" value="{{ c.id }}">
+        <select name="status" class="form-select form-select-sm">
+          <option {% if c.status=='Demande' %}selected{% endif %}>Demande</option>
+          <option {% if c.status=='En cours' %}selected{% endif %}>En cours</option>
+          <option {% if c.status=='Disponible' %}selected{% endif %}>Disponible</option>
+        </select>
+        <button class="btn btn-sm btn-primary" type="submit">Maj</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,13 @@
+users:
+  admin:
+    disabled: false
+    password: "$argon2id$v=19$m=65536,t=1,p=2$NwoEsE7eXNaIlEVBXx3BDw$0uU/cFCL7uNUymhA+YHQZp/6Csop/0dB3gcNb1vxFdA"
+    displayname: "Admin"
+    groups:
+      - admins
+  printer:
+    disabled: false
+    password: "$argon2id$v=19$m=65536,t=1,p=2$NwoEsE7eXNaIlEVBXx3BDw$0uU/cFCL7uNUymhA+YHQZp/6Csop/0dB3gcNb1vxFdA"
+    displayname: "Printer"
+    groups:
+      - printers

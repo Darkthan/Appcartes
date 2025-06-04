@@ -1,0 +1,36 @@
+authelia:
+  log:
+    level: info
+server:
+  host: 0.0.0.0
+  port: 9091
+jwt_secret: changeme
+default_redirection_url: http://localhost/
+
+access_control:
+  default_policy: deny
+  rules:
+    - domain: localhost
+      policy: bypass
+
+session:
+  name: authelia_session
+  expiration: 1h
+  inactivity: 5m
+  storage: sqlite3
+  sqlite3:
+    path: /config/db.sqlite3
+
+storage:
+  local:
+    path: /config/users_database.yml
+
+authentication_backend:
+  file:
+    path: /config/users.yml
+    password:
+      algorithm: argon2id
+
+notifier:
+  filesystem:
+    filename: /config/notification.txt
