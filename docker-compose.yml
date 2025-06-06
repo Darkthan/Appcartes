@@ -4,9 +4,10 @@ services:
     build: .
     volumes:
       - ./app:/app
-      - data:/app
+      - data:/data
     environment:
       - SECRET_KEY=changeme
+      - DATABASE_URL=sqlite:////data/app.db
     depends_on:
       - authelia
     networks:
