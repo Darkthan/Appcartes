@@ -1,10 +1,13 @@
-authelia:
-  log:
-    level: info
+log:
+  level: info
+
 server:
-  host: 0.0.0.0
-  port: 9091
-jwt_secret: changeme
+  address: tcp://0.0.0.0:9091
+
+identity_validation:
+  reset_password:
+    jwt_secret: changeme
+
 default_redirection_url: http://localhost/
 
 access_control:
@@ -17,13 +20,14 @@ session:
   name: authelia_session
   expiration: 1h
   inactivity: 5m
-  storage: sqlite3
-  sqlite3:
-    path: /config/db.sqlite3
+  remember_me_duration: 1M
+  same_site: lax
+  domain: localhost
 
 storage:
+  encryption_key: changemechangemechangemechangeme
   local:
-    path: /config/users_database.yml
+    path: /config/db.sqlite3
 
 authentication_backend:
   file:
