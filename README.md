@@ -18,7 +18,7 @@ Application Flask de gestion de demandes de cartes pour les étudiants. Elle fou
 docker-compose up --build
 ```
 
-2. Le site est alors accessible sur `http://localhost` via Nginx qui passe les requêtes par Authelia pour l'authentification (sauf pour `/kiosk`).
+2. Le site est alors accessible sur `http://localhost:8080` via Nginx qui passe les requêtes par Authelia pour l'authentification (sauf pour `/kiosk`).
 
 3. Les comptes par défaut sont définis dans `authelia/users.yml`. Connectez-vous en tant qu'`admin` pour créer d'autres utilisateurs dans l'application.
 
