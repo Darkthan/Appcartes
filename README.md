@@ -12,20 +12,25 @@ Application Flask de gestion de demandes de cartes pour les étudiants. Elle fou
 
 ## Démarrage rapide
 
-1. Cloner le dépôt puis construire et lancer les conteneurs :
+1. Personnaliser les variables dans le fichier `.env` si nécessaire.
+
+2. Cloner le dépôt puis construire et lancer les conteneurs :
 
 ```bash
 docker-compose up --build
 ```
 
-2. Le site est alors accessible sur `http://localhost` via Nginx qui passe les requêtes par Authelia pour l'authentification (sauf pour `/kiosk`).
+3. Le site est alors accessible sur `http://localhost:${HTTP_PORT:-80}` via Nginx qui passe les requêtes par Authelia pour l'authentification (sauf pour `/kiosk`).
 
-3. Les comptes par défaut sont définis dans `authelia/users.yml`. Connectez-vous en tant qu'`admin` pour créer d'autres utilisateurs dans l'application.
+4. Les comptes par défaut sont définis dans `authelia/users.yml`. Connectez-vous en tant qu'`admin` pour créer d'autres utilisateurs dans l'application.
 
 ## Configuration
 
-- `SECRET_KEY` : clé secrète Flask (variable d'environnement dans `docker-compose.yml`).
-- `DATABASE_URL` : URL SQLAlchemy (par défaut `sqlite:///app.db`).
+Les variables suivantes peuvent être ajustées dans le fichier `.env` :
+
+- `SECRET_KEY` : clé secrète Flask (variable d'environnement dans `docker-compose.yml`).
+- `DATABASE_URL` : URL SQLAlchemy (par défaut `sqlite:///app.db`).
+- `HTTP_PORT` : port HTTP exposé par Nginx (par défaut `80`).
 - Les paramètres d'Authelia se trouvent sous `authelia/` (fichiers `configuration.yml` et `users.yml`).
 - Le proxy Nginx est configuré via `nginx.conf` pour protéger toutes les routes à l'exception de `/kiosk`.
 
@@ -52,6 +57,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 export FLASK_APP=app
 export SECRET_KEY=changeme
+export FLASK_RUN_PORT=5000
 flask run
 ```
 

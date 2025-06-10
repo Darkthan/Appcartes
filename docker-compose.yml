@@ -5,7 +5,8 @@ services:
     volumes:
       - ./app:/app
     environment:
-      - SECRET_KEY=changeme
+      SECRET_KEY: ${SECRET_KEY:-changeme}
+      DATABASE_URL: ${DATABASE_URL:-sqlite:///app.db}
     depends_on:
       - authelia
     networks:
@@ -16,7 +17,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
-      - "80:80"
+      - "${HTTP_PORT:-80}:80"
     depends_on:
       - web
       - authelia
