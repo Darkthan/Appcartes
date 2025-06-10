@@ -20,3 +20,6 @@ def create_app():
         from . import routes, models
         db.create_all()
         return app
+
+
+app = create_app()
